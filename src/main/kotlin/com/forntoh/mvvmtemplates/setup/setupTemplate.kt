@@ -1,47 +1,48 @@
 package com.forntoh.mvvmtemplates.setup
 
 import com.android.tools.idea.wizard.template.*
+import java.io.File
+
 
 val commonTemplate
     get() = template {
         revision = 2
-        name = "New common module"
+        name = "Common"
         description = "Create a new common module"
 
         minApi = 21
         minBuildApi = 21
-        category = Category.Other
+        category = mCategory
         formFactor = FormFactor.Mobile
-        screens = listOf(
-            WizardUiContext.FragmentGallery,
-            WizardUiContext.MenuEntry,
-            WizardUiContext.NewProject,
-            WizardUiContext.NewModule,
-        )
+        screens = mScreens
 
-        name = "common"
+        thumb {
+            File("")
+        }
 
         recipe = { data: TemplateData ->
-            commonModuleSetup(data as ModuleTemplateData)
+            commonModuleSetup(data as ModuleTemplateData, "common")
         }
     }
 
 val databaseTemplate
     get() = template {
         revision = 2
-        name = "New database module"
+        name = "Database"
         description = "Create a new database module"
 
         minApi = 21
         minBuildApi = 21
-        category = Category.Application
+        category = mCategory
         formFactor = FormFactor.Mobile
-        screens = listOf(WizardUiContext.NewModule)
+        screens = mScreens
 
-        name = "database"
+        thumb {
+            File("")
+        }
 
         recipe = { data: TemplateData ->
-            databaseModuleSetup(data as ModuleTemplateData)
+            databaseModuleSetup(data as ModuleTemplateData, "database")
         }
     }
 
@@ -49,40 +50,49 @@ val databaseTemplate
 val webServiceTemplate
     get() = template {
         revision = 2
-        name = "New web-service module"
+        name = "Web-service"
         description = "Create a new web-service module"
 
         minApi = 21
         minBuildApi = 21
-        category = Category.Application
+        category = mCategory
         formFactor = FormFactor.Mobile
-        screens = listOf(WizardUiContext.NewModule)
+        screens = mScreens
 
-        name = "database"
+        thumb {
+            File("")
+        }
 
         recipe = { data: TemplateData ->
-            webServiceModuleSetup(data as ModuleTemplateData)
+            webServiceModuleSetup(data as ModuleTemplateData, "web-service")
         }
     }
-
 
 
 val repositoryTemplate
     get() = template {
         revision = 2
-        name = "New repository module"
+        name = "Repository"
         description = "Create a new repository module"
 
         minApi = 21
         minBuildApi = 21
-        category = Category.Application
+        category = mCategory
         formFactor = FormFactor.Mobile
-        screens = listOf(WizardUiContext.NewModule)
+        screens = mScreens
 
-        name = "database"
+        thumb {
+            File("")
+        }
 
         recipe = { data: TemplateData ->
-            repositoryModuleSetup(data as ModuleTemplateData)
+            repositoryModuleSetup(data as ModuleTemplateData, "repository")
         }
     }
 
+val mCategory = Category.Application
+val mScreens = listOf(
+    WizardUiContext.FragmentGallery,
+    WizardUiContext.MenuEntry,
+    WizardUiContext.NewModule
+)

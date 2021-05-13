@@ -1,32 +1,29 @@
 package com.forntoh.mvvmtemplates.setup
 
-import com.android.tools.idea.npw.module.recipes.androidModule.generateAndroidModule
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
-import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
 
-private fun RecipeExecutor.baseModuleSetup(moduleData: ModuleTemplateData) {
+private fun RecipeExecutor.baseModuleSetup(moduleData: ModuleTemplateData, moduleName: String) {
 
-    val project = projectInstance ?: return
+    val mModule = moduleData.copy(name = moduleName)
 
-    addIncludeToSettings(moduleData.name)
-
-    generateAndroidModule(moduleData, project.name, false, "")
+    addIncludeToSettings(moduleName)
 
     applyPlugin("com.android.library")
     applyPlugin("kotlin-android")
     applyPlugin("kotlin-kapt")
     applyPlugin("dagger.hilt.android.plugin")
 
-    addAllKotlinDependencies(moduleData)
+    addAllKotlinDependencies(mModule)
 }
 
 fun RecipeExecutor.commonModuleSetup(
         moduleData: ModuleTemplateData,
+        moduleName: String,
         useRoom: Boolean = true,
 ) {
-    baseModuleSetup(moduleData)
+    baseModuleSetup(moduleData, moduleName)
 
     if (useRoom) addDependency("androidx.room:room-common:\$room_version")
 
@@ -36,9 +33,10 @@ fun RecipeExecutor.commonModuleSetup(
 
 fun RecipeExecutor.databaseModuleSetup(
         moduleData: ModuleTemplateData,
+        moduleName: String,
         useRoom: Boolean = true,
 ) {
-    baseModuleSetup(moduleData)
+    baseModuleSetup(moduleData, moduleName)
 
     addModuleDependency("implementation", "common", moduleData.rootDir)
 
@@ -48,8 +46,9 @@ fun RecipeExecutor.databaseModuleSetup(
 
 fun RecipeExecutor.webServiceModuleSetup(
         moduleData: ModuleTemplateData,
+        moduleName: String,
 ) {
-    baseModuleSetup(moduleData)
+    baseModuleSetup(moduleData, moduleName)
 
     addModuleDependency("implementation", "common", moduleData.rootDir)
 
@@ -60,8 +59,9 @@ fun RecipeExecutor.webServiceModuleSetup(
 
 fun RecipeExecutor.repositoryModuleSetup(
         moduleData: ModuleTemplateData,
+        moduleName: String,
 ) {
-    baseModuleSetup(moduleData)
+    baseModuleSetup(moduleData, moduleName)
 
     addModuleDependency("api", "common", moduleData.rootDir)
     addModuleDependency("api", "database", moduleData.rootDir)
