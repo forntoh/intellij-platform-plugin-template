@@ -10,9 +10,8 @@
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.java</depends>
 
-    <extensions defaultExtensionNs="com.forntoh.mvvmtemplates">
-        <applicationService serviceImplementation="com.forntoh.mvvmtemplates.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.forntoh.mvvmtemplates.services.MyProjectService"/>
+    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
+        <wizardTemplateProvider implementation="com.forntoh.mvvmtemplates.WizardTemplateProviderImpl" />
     </extensions>
 
     <applicationListeners>
@@ -20,7 +19,4 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
-    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
-        <wizardTemplateProvider implementation="com.forntoh.mvvmtemplates.WizardTemplateProviderImpl" />
-    </extensions>
 </idea-plugin>

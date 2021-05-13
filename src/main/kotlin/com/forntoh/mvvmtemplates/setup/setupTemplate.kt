@@ -12,7 +12,12 @@ val commonTemplate
         minBuildApi = 21
         category = Category.Other
         formFactor = FormFactor.Mobile
-        screens = listOf(WizardUiContext.NewModule)
+        screens = listOf(
+            WizardUiContext.FragmentGallery,
+            WizardUiContext.MenuEntry,
+            WizardUiContext.NewProject,
+            WizardUiContext.NewModule,
+        )
 
         name = "common"
 
