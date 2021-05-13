@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.forntoh.androidprojecttemplates.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.forntoh.androidprojecttemplates.MyBundle
 
 class MyApplicationService {
 
