@@ -1,1 +1,1 @@
-rootProject.name = "Android Project Templates"
+rootProject.name = "mvvm-templates"

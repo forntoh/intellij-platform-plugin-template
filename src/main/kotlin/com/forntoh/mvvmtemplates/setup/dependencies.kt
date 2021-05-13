@@ -1,4 +1,4 @@
-package other.setup
+package com.forntoh.mvvmtemplates.setup
 
 import com.android.tools.idea.wizard.template.RecipeExecutor
 

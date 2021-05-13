@@ -1,10 +1,10 @@
-package other.setup
+package com.forntoh.mvvmtemplates.setup
 
 import com.android.tools.idea.npw.module.recipes.androidModule.generateAndroidModule
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
-import com.forntoh.androidprojecttemplates.listeners.MyProjectManagerListener.Companion.projectInstance
+import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
 
 private fun RecipeExecutor.baseModuleSetup(moduleData: ModuleTemplateData) {
 

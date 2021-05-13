@@ -1,4 +1,4 @@
-package other.setup
+package com.forntoh.mvvmtemplates.setup
 
 import com.android.tools.idea.wizard.template.*
 
@@ -10,7 +10,7 @@ val commonTemplate
 
         minApi = 21
         minBuildApi = 21
-        category = Category.Application
+        category = Category.Other
         formFactor = FormFactor.Mobile
         screens = listOf(WizardUiContext.NewModule)
 

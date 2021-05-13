@@ -1,9 +1,9 @@
-package com.forntoh.androidprojecttemplates.listeners
+package com.forntoh.mvvmtemplates.listeners
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.forntoh.androidprojecttemplates.services.MyProjectService
+import com.forntoh.mvvmtemplates.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

@@ -1,4 +1,4 @@
-package com.forntoh.androidprojecttemplates
+package com.forntoh.mvvmtemplates
 
 import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NonNls
