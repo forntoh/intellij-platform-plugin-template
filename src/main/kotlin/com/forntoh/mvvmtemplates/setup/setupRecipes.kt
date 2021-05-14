@@ -1,42 +1,44 @@
 package com.forntoh.mvvmtemplates.setup
 
+import com.android.tools.idea.npw.module.recipes.generateManifest
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
+import com.forntoh.mvvmtemplates.recipes.common.commonFileStructure
 
-private fun RecipeExecutor.baseModuleSetup(moduleData: ModuleTemplateData, moduleName: String) {
+private fun RecipeExecutor.baseModuleSetup(moduleData: ModuleTemplateData) {
 
-    val mModule = moduleData.copy(name = moduleName)
-
-    addIncludeToSettings(moduleName)
+    addIncludeToSettings(moduleData.name)
 
     applyPlugin("com.android.library")
     applyPlugin("kotlin-android")
     applyPlugin("kotlin-kapt")
     applyPlugin("dagger.hilt.android.plugin")
 
-    addAllKotlinDependencies(mModule)
+    save(generateManifest(moduleData.packageName, false, "", ""), moduleData.manifestDir)
+
+    addAllKotlinDependencies(moduleData)
 }
 
 fun RecipeExecutor.commonModuleSetup(
-        moduleData: ModuleTemplateData,
-        moduleName: String,
-        useRoom: Boolean = true,
+    moduleData: ModuleTemplateData,
+    useRoom: Boolean = true,
 ) {
-    baseModuleSetup(moduleData, moduleName)
+    baseModuleSetup(moduleData)
 
     if (useRoom) addDependency("androidx.room:room-common:\$room_version")
+
+    commonFileStructure(moduleData)
 
     commonDependencies()
     hiltDependencies()
 }
 
 fun RecipeExecutor.databaseModuleSetup(
-        moduleData: ModuleTemplateData,
-        moduleName: String,
-        useRoom: Boolean = true,
+    moduleData: ModuleTemplateData,
+    useRoom: Boolean = true,
 ) {
-    baseModuleSetup(moduleData, moduleName)
+    baseModuleSetup(moduleData)
 
     addModuleDependency("implementation", "common", moduleData.rootDir)
 
@@ -45,10 +47,9 @@ fun RecipeExecutor.databaseModuleSetup(
 }
 
 fun RecipeExecutor.webServiceModuleSetup(
-        moduleData: ModuleTemplateData,
-        moduleName: String,
+    moduleData: ModuleTemplateData,
 ) {
-    baseModuleSetup(moduleData, moduleName)
+    baseModuleSetup(moduleData)
 
     addModuleDependency("implementation", "common", moduleData.rootDir)
 
@@ -58,10 +59,9 @@ fun RecipeExecutor.webServiceModuleSetup(
 }
 
 fun RecipeExecutor.repositoryModuleSetup(
-        moduleData: ModuleTemplateData,
-        moduleName: String,
+    moduleData: ModuleTemplateData,
 ) {
-    baseModuleSetup(moduleData, moduleName)
+    baseModuleSetup(moduleData)
 
     addModuleDependency("api", "common", moduleData.rootDir)
     addModuleDependency("api", "database", moduleData.rootDir)

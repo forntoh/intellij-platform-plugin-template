@@ -11,7 +11,7 @@
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
-        <wizardTemplateProvider implementation="com.forntoh.mvvmtemplates.WizardTemplateProviderImpl" />
+        <wizardTemplateProvider implementation="com.forntoh.mvvmtemplates.WizardTemplateProviderImpl"/>
     </extensions>
 
     <applicationListeners>

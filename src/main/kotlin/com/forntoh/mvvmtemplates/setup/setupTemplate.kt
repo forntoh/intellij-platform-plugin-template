@@ -16,12 +16,8 @@ val commonTemplate
         formFactor = FormFactor.Mobile
         screens = mScreens
 
-        thumb {
-            File("")
-        }
-
         recipe = { data: TemplateData ->
-            commonModuleSetup(data as ModuleTemplateData, "common")
+            commonModuleSetup(data as ModuleTemplateData)
         }
     }
 
@@ -37,12 +33,8 @@ val databaseTemplate
         formFactor = FormFactor.Mobile
         screens = mScreens
 
-        thumb {
-            File("")
-        }
-
         recipe = { data: TemplateData ->
-            databaseModuleSetup(data as ModuleTemplateData, "database")
+            databaseModuleSetup(data as ModuleTemplateData)
         }
     }
 
@@ -64,7 +56,7 @@ val webServiceTemplate
         }
 
         recipe = { data: TemplateData ->
-            webServiceModuleSetup(data as ModuleTemplateData, "web-service")
+            webServiceModuleSetup(data as ModuleTemplateData)
         }
     }
 
@@ -86,13 +78,10 @@ val repositoryTemplate
         }
 
         recipe = { data: TemplateData ->
-            repositoryModuleSetup(data as ModuleTemplateData, "repository")
+            repositoryModuleSetup(data as ModuleTemplateData)
         }
     }
 
-val mCategory = Category.Application
-val mScreens = listOf(
-    WizardUiContext.FragmentGallery,
-    WizardUiContext.MenuEntry,
-    WizardUiContext.NewModule
-)
+val mCategory get() = Category.Other
+
+val mScreens get() = listOf(WizardUiContext.NewModule)
