@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.idea.KotlinLanguage
 fun PsiDirectory.packageName(moduleData: ModuleTemplateData) = "${moduleData.packageName}.${this.name}"
 
 fun createDirInSrc(moduleData: ModuleTemplateData, dir: String): VirtualFile =
-    VfsUtil.createDirectories("${srcPath(moduleData)}/$dir")
+    VfsUtil.createDirectories("${srcPath(moduleData)}${if (dir.isEmpty()) "" else "/$dir"}")
 
 fun resPath(moduleData: ModuleTemplateData) =
     "${moduleData.rootDir.path}/${moduleData.name}/src/main/res/"

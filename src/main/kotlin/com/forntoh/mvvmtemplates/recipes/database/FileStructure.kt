@@ -3,8 +3,8 @@ package com.forntoh.mvvmtemplates.recipes.database
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
-import com.forntoh.mvvmtemplates.recipes.common.src.event
-import com.forntoh.mvvmtemplates.recipes.common.src.eventBus
+import com.forntoh.mvvmtemplates.recipes.webservice.src.event
+import com.forntoh.mvvmtemplates.recipes.webservice.src.eventBus
 import com.forntoh.mvvmtemplates.recipes.createDirInSrc
 import com.forntoh.mvvmtemplates.recipes.database.src.converters
 import com.forntoh.mvvmtemplates.recipes.database.src.database

@@ -72,6 +72,23 @@ class PreferenceRepository @Inject constructor(@ApplicationContext private val c
     private val _isDarkThemeLive: MutableLiveData<Boolean> = MutableLiveData()
     val isDarkThemeLive: LiveData<Boolean>
         get() = _isDarkThemeLive
+        
+    var userToken: String? = null
+        get() = loadString(PREFERENCE_USER_TOKEN)
+        set(value) {
+            saveString(PREFERENCE_USER_TOKEN, value)
+            field = value
+        }
+        
+    private val preferenceChangedListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            when (key) {
+                PREFERENCE_NIGHT_MODE -> {
+                    _nightModeLive.value = nightMode
+                    _isDarkThemeLive.value = isDarkTheme
+                }
+            }
+        }
 
     private fun saveString(key: String, value: String?) {
         if (value.isNullOrEmpty()) return
@@ -90,6 +107,7 @@ class PreferenceRepository @Inject constructor(@ApplicationContext private val c
     }
 
     companion object {
+        private const val PREFERENCE_USER_TOKEN = "token"
         private const val PREFERENCE_NIGHT_MODE = "preference_night_mode"
         private const val PREFERENCE_NIGHT_MODE_SYSTEM = "preference_night_mode_system"
         private const val PREFERENCE_NIGHT_MODE_DEF_VAL = AppCompatDelegate.MODE_NIGHT_NO
