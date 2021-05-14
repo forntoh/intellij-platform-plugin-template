@@ -14,10 +14,10 @@ fun createDirInSrc(moduleData: ModuleTemplateData, dir: String): VirtualFile =
     VfsUtil.createDirectories("${srcPath(moduleData)}${if (dir.isEmpty()) "" else "/$dir"}")
 
 fun resPath(moduleData: ModuleTemplateData) =
-    "${moduleData.rootDir.path}/${moduleData.name}/src/main/res/"
+    "${moduleData.rootDir.path}/src/main/res/"
 
 fun srcPath(moduleData: ModuleTemplateData) =
-    "${moduleData.rootDir.path}/${moduleData.name}/src/main/java/${moduleData.packageName.replace('.', '/')}"
+    "${moduleData.rootDir.path}/src/main/java/${moduleData.packageName.replace('.', '/')}"
 
 
 fun String.save(destDir: PsiDirectory, fileName: String) {
