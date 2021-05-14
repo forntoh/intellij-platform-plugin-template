@@ -12,7 +12,7 @@ import com.intellij.psi.PsiManager
 
 fun RecipeExecutor.webServiceFileStructure(
     moduleData: ModuleTemplateData,
-    commonPackageName: String,
+    commonModuleName: String,
     useHttps: Boolean,
     domain: String,
     port: String,
@@ -56,6 +56,6 @@ fun RecipeExecutor.webServiceFileStructure(
     with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, "interceptors"))!!) {
         val eventPackage = packageName(moduleData)
         baseInterceptor(eventPackage).save(this, "BaseInterceptor.kt")
-        tokenInterceptor(eventPackage, commonPackageName).save(this, "TokenInterceptor.kt")
+        tokenInterceptor(eventPackage, "${moduleData.packageName}.$commonModuleName").save(this, "TokenInterceptor.kt")
     }
 }

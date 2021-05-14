@@ -5,6 +5,7 @@ import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
 import com.forntoh.mvvmtemplates.recipes.common.commonFileStructure
 import com.forntoh.mvvmtemplates.recipes.database.databaseFileStructure
+import com.forntoh.mvvmtemplates.recipes.repository.repositoryFileStructure
 import com.forntoh.mvvmtemplates.recipes.webservice.webServiceFileStructure
 
 fun RecipeExecutor.commonModuleSetup(
@@ -64,6 +65,8 @@ fun RecipeExecutor.repositoryModuleSetup(
     addModuleDependency("api", commonModuleName, moduleData.rootDir)
     addModuleDependency("api", databaseModuleName, moduleData.rootDir)
     addModuleDependency("api", webServiceModuleName, moduleData.rootDir)
+
+    repositoryFileStructure(moduleData, commonModuleName, webServiceModuleName)
 
     hiltDependencies()
 }

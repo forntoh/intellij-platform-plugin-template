@@ -3,8 +3,6 @@ package com.forntoh.mvvmtemplates.recipes.database
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
-import com.forntoh.mvvmtemplates.recipes.webservice.src.event
-import com.forntoh.mvvmtemplates.recipes.webservice.src.eventBus
 import com.forntoh.mvvmtemplates.recipes.createDirInSrc
 import com.forntoh.mvvmtemplates.recipes.database.src.converters
 import com.forntoh.mvvmtemplates.recipes.database.src.database
@@ -45,13 +43,6 @@ fun RecipeExecutor.databaseFileStructure(
     // Create DAOs dir
     with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, "daos"))!!) {
         converters(packageName(moduleData)).save(this, "BaseDao.kt")
-    }
-
-    // Create event dir
-    with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, "event"))!!) {
-        val eventPackage = packageName(moduleData)
-        event(eventPackage).save(this, "Event.kt")
-        eventBus(eventPackage).save(this, "EventBus.kt")
     }
 
 }
