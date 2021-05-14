@@ -10,7 +10,7 @@ import com.forntoh.mvvmtemplates.recipes.webservice.src.*
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.psi.PsiManager
 
-fun RecipeExecutor.webServiceStructure(
+fun RecipeExecutor.webServiceFileStructure(
     moduleData: ModuleTemplateData,
     commonPackageName: String,
     useHttps: Boolean,
