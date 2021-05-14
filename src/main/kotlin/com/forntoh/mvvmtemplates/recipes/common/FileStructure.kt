@@ -10,7 +10,10 @@ import com.forntoh.mvvmtemplates.recipes.createDirInSrc
 import com.forntoh.mvvmtemplates.recipes.packageName
 import com.forntoh.mvvmtemplates.recipes.save
 import com.intellij.openapi.vfs.VfsUtil
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.psi.PsiManager
+
 
 fun RecipeExecutor.commonFileStructure(moduleData: ModuleTemplateData) {
 

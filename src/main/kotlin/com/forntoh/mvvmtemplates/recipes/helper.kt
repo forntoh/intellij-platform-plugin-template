@@ -1,6 +1,7 @@
 package com.forntoh.mvvmtemplates.recipes
 
 import com.android.tools.idea.wizard.template.ModuleTemplateData
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDirectory
