@@ -1,12 +1,22 @@
 package com.forntoh.mvvmtemplates.setup
 
+import com.android.tools.idea.npw.module.recipes.generateManifest
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
+import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.forntoh.mvvmtemplates.recipes.common.commonFileStructure
+import com.forntoh.mvvmtemplates.recipes.common.src.event
+import com.forntoh.mvvmtemplates.recipes.common.src.eventBus
+import com.forntoh.mvvmtemplates.recipes.createDirInSrc
 import com.forntoh.mvvmtemplates.recipes.database.databaseFileStructure
+import com.forntoh.mvvmtemplates.recipes.mainPath
+import com.forntoh.mvvmtemplates.recipes.packageName
 import com.forntoh.mvvmtemplates.recipes.repository.repositoryFileStructure
+import com.forntoh.mvvmtemplates.recipes.save
 import com.forntoh.mvvmtemplates.recipes.webservice.webServiceFileStructure
+import com.intellij.openapi.vfs.VfsUtil
+import com.intellij.psi.PsiManager
 
 fun RecipeExecutor.commonModuleSetup(
     moduleData: ModuleTemplateData,

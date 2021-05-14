@@ -13,8 +13,8 @@ fun PsiDirectory.packageName(moduleData: ModuleTemplateData) = "${moduleData.pac
 fun createDirInSrc(moduleData: ModuleTemplateData, dir: String): VirtualFile =
     VfsUtil.createDirectories("${srcPath(moduleData)}${if (dir.isEmpty()) "" else "/$dir"}")
 
-fun resPath(moduleData: ModuleTemplateData) =
-    "${moduleData.rootDir.path}/src/main/res/"
+fun mainPath(moduleData: ModuleTemplateData) =
+    "${moduleData.rootDir.path}/src/main/"
 
 fun srcPath(moduleData: ModuleTemplateData) =
     "${moduleData.rootDir.path}/src/main/java/${moduleData.packageName.replace('.', '/')}"
