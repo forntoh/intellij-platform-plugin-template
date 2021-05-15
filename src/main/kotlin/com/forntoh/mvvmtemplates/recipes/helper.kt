@@ -3,13 +3,16 @@ package com.forntoh.mvvmtemplates.recipes
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.intellij.lang.xml.XMLLanguage
 import com.intellij.openapi.fileTypes.PlainTextLanguage
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFileFactory
+import com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.idea.KotlinLanguage
 
-fun PsiDirectory.packageName(moduleData: ModuleTemplateData) = "${moduleData.packageName}.${this.name}"
+fun PsiDirectory.packageName(moduleData: ModuleTemplateData, isRoot: Boolean = false) =
+    "${moduleData.packageName}${if (!isRoot) ".${this.name}" else ""}"
 
 fun createDirInSrc(moduleData: ModuleTemplateData, dir: String): VirtualFile =
     VfsUtil.createDirectories("${srcPath(moduleData)}${if (dir.isEmpty()) "" else "/$dir"}")
@@ -42,3 +45,5 @@ fun String.save(destDir: PsiDirectory, fileName: String) {
         exc.printStackTrace()
     }
 }
+
+fun VirtualFile.asDir(project: Project) = PsiManager.getInstance(project).findDirectory(this)

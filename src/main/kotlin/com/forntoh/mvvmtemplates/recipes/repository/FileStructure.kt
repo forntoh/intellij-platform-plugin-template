@@ -25,7 +25,7 @@ fun RecipeExecutor.repositoryFileStructure(
 
     // Create root dir
     with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, ""))!!) {
-        val eventPackage = packageName(moduleData)
+        val eventPackage = packageName(moduleData, true)
         baseRepository(
             eventPackage,
             "${moduleData.packageName}.$commonModuleName",

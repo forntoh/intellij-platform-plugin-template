@@ -8,6 +8,7 @@ import com.forntoh.mvvmtemplates.recipes.webservice.gradleBuildWebService
 import com.forntoh.mvvmtemplates.setup.ui.button
 import com.forntoh.mvvmtemplates.setup.ui.frame
 import com.forntoh.mvvmtemplates.setup.ui.textField
+import com.forntoh.mvvmtemplates.util.Logger
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.roots.ProjectRootManager
@@ -15,7 +16,7 @@ import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import javax.swing.*
 
-class MainAction : AnAction() {
+class FixManifestGradleAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
@@ -60,6 +61,7 @@ class MainAction : AnAction() {
                         else -> continue
                     }
                 }
+                it.dispose()
             }
         }
     }
@@ -78,8 +80,8 @@ class MainAction : AnAction() {
         )
     }
 
-    private fun generateManifest(packageName: String): String = """
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="$packageName">
+    private fun generateManifest(packageName: String): String = """<?xml version="1.0" encoding="utf-8"?>
+<manifest package="$packageName">
 
 </manifest>
   """

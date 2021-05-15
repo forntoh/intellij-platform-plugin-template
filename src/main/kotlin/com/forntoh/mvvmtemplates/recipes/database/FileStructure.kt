@@ -4,6 +4,7 @@ import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.forntoh.mvvmtemplates.recipes.createDirInSrc
+import com.forntoh.mvvmtemplates.recipes.database.src.baseDao
 import com.forntoh.mvvmtemplates.recipes.database.src.converters
 import com.forntoh.mvvmtemplates.recipes.database.src.database
 import com.forntoh.mvvmtemplates.recipes.database.src.module
@@ -31,7 +32,7 @@ fun RecipeExecutor.databaseFileStructure(
 
     // Create root file
     with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, ""))!!) {
-        database(packageName(moduleData), databaseName).save(this, "AppDatabase.kt")
+        database(packageName(moduleData, true), databaseName).save(this, "AppDatabase.kt")
         module(packageName(moduleData), "${moduleData.packageName}.$commonModuleName").save(this, "DatabaseModule.kt")
     }
 
@@ -42,6 +43,6 @@ fun RecipeExecutor.databaseFileStructure(
 
     // Create DAOs dir
     with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, "daos"))!!) {
-        converters(packageName(moduleData)).save(this, "BaseDao.kt")
+        baseDao(packageName(moduleData)).save(this, "BaseDao.kt")
     }
 }
