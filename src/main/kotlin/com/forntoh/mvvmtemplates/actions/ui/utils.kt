@@ -1,4 +1,4 @@
-package com.forntoh.mvvmtemplates.setup.ui
+package com.forntoh.mvvmtemplates.actions.ui
 
 import java.awt.Dimension
 import javax.swing.*

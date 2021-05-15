@@ -1,14 +1,13 @@
-package com.forntoh.mvvmtemplates.setup.actions
+package com.forntoh.mvvmtemplates.actions
 
 import com.forntoh.mvvmtemplates.recipes.child
 import com.forntoh.mvvmtemplates.recipes.common.gradleBuildCommon
 import com.forntoh.mvvmtemplates.recipes.database.gradleBuildDatabase
 import com.forntoh.mvvmtemplates.recipes.repository.gradleBuildRepo
 import com.forntoh.mvvmtemplates.recipes.webservice.gradleBuildWebService
-import com.forntoh.mvvmtemplates.setup.ui.button
-import com.forntoh.mvvmtemplates.setup.ui.frame
-import com.forntoh.mvvmtemplates.setup.ui.textField
-import com.forntoh.mvvmtemplates.util.Logger
+import com.forntoh.mvvmtemplates.actions.ui.button
+import com.forntoh.mvvmtemplates.actions.ui.frame
+import com.forntoh.mvvmtemplates.actions.ui.textField
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.roots.ProjectRootManager
