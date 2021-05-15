@@ -1,5 +1,6 @@
 package com.forntoh.mvvmtemplates.recipes.common
 
+import com.android.tools.idea.npw.module.recipes.generateManifest
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
@@ -34,4 +35,9 @@ fun RecipeExecutor.commonFileStructure(moduleData: ModuleTemplateData) {
         preferenceRepository(packageName(moduleData)).save(this, "PreferenceRepository.kt")
     }
 
+    // Update Gradle
+//    VfsUtil.saveText(
+//        VfsUtil.findFileByIoFile(moduleData.rootDir, false)?.findChild("build.gradle")!!,
+//        gradleBuildCommon()
+//    )
 }

@@ -1,10 +1,8 @@
 <idea-plugin>
     <id>com.forntoh.mvvmtemplates</id>
-    <name>mvvm-templates</name>
+    <name>MVVM Templates</name>
     <vendor>Forntoh</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.android</depends>
     <depends>org.jetbrains.kotlin</depends>
@@ -19,4 +17,11 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
+    <actions>
+        <action id="com.forntoh.mvvmtemplates.setup.actions.MainAction"
+                class="com.forntoh.mvvmtemplates.setup.actions.MainAction" text="Fix Manifest and Build Files"
+                description="Fix manifest and Build Files">
+            <add-to-group group-id="CodeMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

@@ -1,9 +1,11 @@
 package com.forntoh.mvvmtemplates.recipes.webservice
 
+import com.android.tools.idea.npw.module.recipes.generateManifest
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.forntoh.mvvmtemplates.recipes.createDirInSrc
+import com.forntoh.mvvmtemplates.recipes.database.gradleBuildDatabase
 import com.forntoh.mvvmtemplates.recipes.packageName
 import com.forntoh.mvvmtemplates.recipes.save
 import com.forntoh.mvvmtemplates.recipes.webservice.src.*
@@ -58,4 +60,9 @@ fun RecipeExecutor.webServiceFileStructure(
         baseInterceptor(eventPackage).save(this, "BaseInterceptor.kt")
         tokenInterceptor(eventPackage, "${moduleData.packageName}.$commonModuleName").save(this, "TokenInterceptor.kt")
     }
+    // Update Gradle
+//    VfsUtil.saveText(
+//        VfsUtil.findFileByIoFile(moduleData.rootDir, false)?.findChild("build.gradle")!!,
+//        gradleBuildWebService(commonModuleName)
+//    )
 }

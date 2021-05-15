@@ -11,7 +11,5 @@ class WizardTemplateProviderImpl : WizardTemplateProvider() {
         databaseTemplate,
         webServiceTemplate,
         repositoryTemplate,
-
-        fixManifests,
     )
 }

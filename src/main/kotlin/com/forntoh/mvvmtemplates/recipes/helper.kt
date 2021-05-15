@@ -1,6 +1,8 @@
 package com.forntoh.mvvmtemplates.recipes
 
 import com.android.tools.idea.wizard.template.ModuleTemplateData
+import com.intellij.lang.xml.XMLLanguage
+import com.intellij.openapi.fileTypes.PlainTextLanguage
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
@@ -24,7 +26,13 @@ fun String.save(destDir: PsiDirectory, fileName: String) {
     try {
         val psiFile = PsiFileFactory
             .getInstance(destDir.project)
-            .createFileFromText(fileName, KotlinLanguage.INSTANCE, this)
+            .createFileFromText(
+                fileName, when (fileName.split(".").last()) {
+                    "kt" -> KotlinLanguage.INSTANCE
+                    "xml" -> XMLLanguage.INSTANCE
+                    else -> PlainTextLanguage.INSTANCE
+                }, this
+            )
         destDir.add(psiFile)
     } catch (exc: Exception) {
         exc.printStackTrace()
