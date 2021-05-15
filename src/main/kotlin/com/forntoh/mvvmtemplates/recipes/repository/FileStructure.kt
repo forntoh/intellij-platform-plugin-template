@@ -1,6 +1,5 @@
 package com.forntoh.mvvmtemplates.recipes.repository
 
-import com.android.tools.idea.npw.module.recipes.generateManifest
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
@@ -16,7 +15,6 @@ import com.intellij.psi.PsiManager
 fun RecipeExecutor.repositoryFileStructure(
     moduleData: ModuleTemplateData,
     commonModuleName: String,
-    databaseModuleName: String,
     webServiceModuleName: String,
 ) {
 
@@ -40,10 +38,4 @@ fun RecipeExecutor.repositoryFileStructure(
         appRepoModule(eventPackage).save(this, "AppRepoModule.kt")
         repoModule(eventPackage).save(this, "RepoModule.kt")
     }
-
-    // Update Gradle
-//    VfsUtil.saveText(
-//        VfsUtil.findFileByIoFile(moduleData.rootDir, false)?.findChild("build.gradle")!!,
-//        gradleBuildRepo(commonModuleName, databaseModuleName, webServiceModuleName)
-//    )
 }

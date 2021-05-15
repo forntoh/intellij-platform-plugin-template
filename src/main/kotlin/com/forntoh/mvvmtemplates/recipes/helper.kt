@@ -3,7 +3,6 @@ package com.forntoh.mvvmtemplates.recipes
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.intellij.lang.xml.XMLLanguage
 import com.intellij.openapi.fileTypes.PlainTextLanguage
-import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDirectory
@@ -21,6 +20,11 @@ fun mainPath(moduleData: ModuleTemplateData) =
 fun srcPath(moduleData: ModuleTemplateData) =
     "${moduleData.rootDir.path}/src/main/java/${moduleData.packageName.replace('.', '/')}"
 
+fun VirtualFile?.child(path: String): VirtualFile? {
+    var file = this
+    path.split("/").forEach { file = file?.findChild(it) }
+    return file
+}
 
 fun String.save(destDir: PsiDirectory, fileName: String) {
     try {

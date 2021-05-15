@@ -159,7 +159,6 @@ val repositoryTemplate
             repositoryModuleSetup(
                 data as ModuleTemplateData,
                 commonModuleName.value.replace('-', '_'),
-                databaseModuleName.value.replace('-', '_'),
                 webServiceModuleName.value.replace('-', '_'),
             )
         }

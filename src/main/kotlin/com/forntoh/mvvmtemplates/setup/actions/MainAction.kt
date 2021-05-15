@@ -1,16 +1,19 @@
 package com.forntoh.mvvmtemplates.setup.actions
 
-import com.android.tools.idea.npw.module.recipes.generateManifest
+import com.forntoh.mvvmtemplates.recipes.child
+import com.forntoh.mvvmtemplates.recipes.common.gradleBuildCommon
+import com.forntoh.mvvmtemplates.recipes.database.gradleBuildDatabase
+import com.forntoh.mvvmtemplates.recipes.repository.gradleBuildRepo
+import com.forntoh.mvvmtemplates.recipes.webservice.gradleBuildWebService
+import com.forntoh.mvvmtemplates.setup.ui.button
+import com.forntoh.mvvmtemplates.setup.ui.frame
+import com.forntoh.mvvmtemplates.setup.ui.textField
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
-import java.awt.Dimension
 import javax.swing.*
-import javax.swing.event.DocumentEvent
-import javax.swing.event.DocumentListener
 
 class MainAction : AnAction() {
 
@@ -36,19 +39,23 @@ class MainAction : AnAction() {
                     when (folder.name) {
                         common.text -> {
                             val packageName = "${base.text}.${common.text}".replace('-', '_')
-                            createManifest(folder, packageName)
+                            folder.createManifest(packageName)
+                            folder.generateGradleScript(gradleBuildCommon())
                         }
                         db.text -> {
                             val packageName = "${base.text}.${db.text}".replace('-', '_')
-                            createManifest(folder, packageName)
+                            folder.createManifest(packageName)
+                            folder.generateGradleScript(gradleBuildDatabase(common.text))
                         }
                         repo.text -> {
                             val packageName = "${base.text}.${repo.text}".replace('-', '_')
-                            createManifest(folder, packageName)
+                            folder.createManifest(packageName)
+                            folder.generateGradleScript(gradleBuildRepo(common.text, db.text, web.text))
                         }
                         web.text -> {
                             val packageName = "${base.text}.${web.text}".replace('-', '_')
-                            createManifest(folder, packageName)
+                            folder.createManifest(packageName)
+                            folder.generateGradleScript(gradleBuildWebService(common.text))
                         }
                         else -> continue
                     }
@@ -57,52 +64,25 @@ class MainAction : AnAction() {
         }
     }
 
-    private fun createManifest(folder: VirtualFile, packageName: String) {
+    private fun VirtualFile.generateGradleScript(scriptContent: String) {
         VfsUtil.saveText(
-            folder.child("src/main/AndroidManifest.xml")!!,
+            findChild("build.gradle")!!,
+            scriptContent
+        )
+    }
+
+    private fun VirtualFile.createManifest(packageName: String) {
+        VfsUtil.saveText(
+            child("src/main/AndroidManifest.xml")!!,
             generateManifest(packageName)
         )
     }
-}
 
-fun frame(title: String, body: (JFrame) -> Unit) = with(JFrame(title)) {
+    private fun generateManifest(packageName: String): String = """
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="$packageName">
 
-    size = Dimension(512, 512)
-
-    contentPane = JPanel().apply { border = BorderFactory.createEmptyBorder(32, 32, 32, 32) }
-    contentPane.layout = BoxLayout(contentPane, BoxLayout.Y_AXIS)
-
-    body(this)
-
-    pack()
-    setLocationRelativeTo(null)
-
-    isVisible = true
-}
-
-fun JFrame.button(text: String, action: () -> Unit) = JButton(text).apply {
-    addActionListener {
-        action()
-    }
-    isEnabled = true
-    contentPane.add(this)
-}
-
-fun JFrame.textField(title: String, defaultValue: String = "") = JTextField(defaultValue, 54).apply {
-    alignmentX = 0f
-    val label = JLabel(title)
-    label.alignmentX = 0f
-    label.labelFor = this
-    label.border = BorderFactory.createEmptyBorder(0, 4, 6, 0)
-    contentPane.add(label)
-    contentPane.add(this)
-    contentPane.add(Box.createVerticalStrut(20))
-}
-
-fun VirtualFile?.child(path: String): VirtualFile? {
-    var file = this
-    path.split("/").forEach { file = file?.findChild(it) }
-    return file
+</manifest>
+  """
 }
 
 //        var targetDirectory = CommonDataKeys.VIRTUAL_FILE.getData(dataContext)

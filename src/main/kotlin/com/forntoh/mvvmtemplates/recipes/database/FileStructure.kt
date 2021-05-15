@@ -1,6 +1,5 @@
 package com.forntoh.mvvmtemplates.recipes.database
 
-import com.android.tools.idea.npw.module.recipes.generateManifest
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.forntoh.mvvmtemplates.listeners.MyProjectManagerListener.Companion.projectInstance
@@ -10,10 +9,8 @@ import com.forntoh.mvvmtemplates.recipes.database.src.database
 import com.forntoh.mvvmtemplates.recipes.database.src.module
 import com.forntoh.mvvmtemplates.recipes.packageName
 import com.forntoh.mvvmtemplates.recipes.save
-import com.forntoh.mvvmtemplates.util.Logger
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.psi.PsiManager
-import java.io.IOException
 
 fun RecipeExecutor.databaseFileStructure(
     moduleData: ModuleTemplateData,
@@ -47,9 +44,4 @@ fun RecipeExecutor.databaseFileStructure(
     with(PsiManager.getInstance(project).findDirectory(createDirInSrc(moduleData, "daos"))!!) {
         converters(packageName(moduleData)).save(this, "BaseDao.kt")
     }
-
-//    VfsUtil.saveText(
-//        VfsUtil.findFileByIoFile(moduleData.rootDir, false)?.findChild("build.gradle")!!,
-//        gradleBuildDatabase(commonModuleName)
-//    )
 }
