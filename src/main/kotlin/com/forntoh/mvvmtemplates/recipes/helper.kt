@@ -33,8 +33,11 @@ fun VirtualFile?.packageName(): String {
     var packageName = ""
     var child = this
 
-    while (run { child = child?.children?.firstOrNull(); child } != null)
-        packageName += "${child?.name}."
+    for (i in 0..2) {
+        if (run { child = child?.children?.firstOrNull(); child } != null)
+            packageName += "${child?.name}."
+        else break
+    }
 
     return packageName.substring(0, packageName.length - 1)
 }

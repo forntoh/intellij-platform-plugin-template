@@ -34,6 +34,8 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
 
 fun baseViewModel(packageName: String) = """package $packageName
 
+import androidx.lifecycle.ViewModel
+
 abstract class BaseViewModel : ViewModel()"""
 
 fun scopedFragment(packageName: String) = """package $packageName

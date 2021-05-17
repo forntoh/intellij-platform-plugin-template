@@ -4,8 +4,10 @@ import com.forntoh.mvvmtemplates.recipes.app.*
 import com.forntoh.mvvmtemplates.recipes.child
 import com.forntoh.mvvmtemplates.recipes.packageName
 import com.forntoh.mvvmtemplates.recipes.save
+import com.intellij.ide.impl.convert.JDomConvertingUtil.findChild
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.vfs.VfsUtil
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiManager
 
 class CreateAppStructure : RequireAppAction() {
@@ -71,20 +73,22 @@ class CreateAppStructure : RequireAppAction() {
 
         // values
         PsiManager.getInstance(project).findDirectory(VfsUtil.createDirectories("${resRoot.path}/values"))?.let {
-            colors.save(it, "colors.xml")
             dimens.save(it, "dimens.xml")
             shape.save(it, "shape.xml")
             type.save(it, "type.xml")
             styles(project.name).save(it, "styles.xml")
-            themes(project.name).save(it, "themes.xml")
         }
 
-        // values-night
-        PsiManager.getInstance(project).findDirectory(VfsUtil.createDirectories("${resRoot.path}/values-night"))?.let {
-            themesNight(project.name).save(it, "themes.xml")
+        VfsUtil.createDirectories("${resRoot.path}/values")?.let {
+            it.saveText("colors.xml", colors)
+            it.saveText("themes.xml", themes(project.name))
         }
-
-
+        VfsUtil.createDirectories("${resRoot.path}/values-night")?.saveText("themes.xml", themesNight(project.name))
     }
+
+    private fun VirtualFile.saveText(fileName: String, content: String) = VfsUtil.saveText(
+        findChild(fileName)!!,
+        content
+    )
 
 }
