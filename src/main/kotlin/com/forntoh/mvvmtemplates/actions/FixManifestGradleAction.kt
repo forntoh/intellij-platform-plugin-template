@@ -67,13 +67,9 @@ class FixManifestGradleAction : RequireAppAction() {
     private fun VirtualFile.createManifest(packageName: String) {
         VfsUtil.saveText(
             child("src/main/AndroidManifest.xml")!!,
-            generateManifest(packageName)
+            """<?xml version="1.0" encoding="utf-8"?>
+<manifest package="$packageName" />
+  """
         )
     }
-
-    private fun generateManifest(packageName: String): String = """<?xml version="1.0" encoding="utf-8"?>
-<manifest package="$packageName">
-
-</manifest>
-  """
 }
