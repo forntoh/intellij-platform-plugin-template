@@ -7,7 +7,7 @@ fun gradleBuildProject() = """buildscript {
         kotlin_version = '1.4.31'
         arch_navigation = '2.3.4'
         ok_http_Version = '5.0.0-alpha.2'
-        groupie_version = '2.8.1'
+        groupie_version = '2.9.0'
         retrofit_version = '2.9.0'
         lifecycle_version = '2.3.0'
         work_manager_version = '2.5.0'
@@ -20,7 +20,6 @@ fun gradleBuildProject() = """buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:+kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:+hilt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:+arch_navigation"
     }
@@ -30,7 +29,6 @@ allprojects {
     repositories {
         google()
         maven { url "https://www.jitpack.io" }
-        maven { url 'https://dl.bintray.com/lisawray/maven' }
     }
 }
 
@@ -39,7 +37,6 @@ task clean(type: Delete) {
 }""".replace('+', '$')
 
 fun appManifest(packageName: String, appName: String) = """<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="$packageName">
 
     <uses-permission android:name="android.permission.INTERNET" />

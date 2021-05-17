@@ -6,8 +6,8 @@ fun gradleBuildRepo(
     webServiceModuleName: String,
 ) = """plugins {
     id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.android' version "+kotlin_version"
+    id 'org.jetbrains.kotlin.kapt'
     id 'dagger.hilt.android.plugin'
 }
 

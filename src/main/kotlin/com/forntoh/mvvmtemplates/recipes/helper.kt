@@ -42,6 +42,11 @@ fun VirtualFile?.packageName(): String {
     return packageName.substring(0, packageName.length - 1)
 }
 
+fun VirtualFile.saveText(fileName: String, content: String) = VfsUtil.saveText(
+    findChild(fileName)!!,
+    content
+)
+
 fun String.save(destDir: PsiDirectory, fileName: String) {
     try {
         val psiFile = PsiFileFactory

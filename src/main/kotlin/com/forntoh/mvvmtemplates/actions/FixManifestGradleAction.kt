@@ -3,12 +3,12 @@ package com.forntoh.mvvmtemplates.actions
 import com.forntoh.mvvmtemplates.actions.ui.button
 import com.forntoh.mvvmtemplates.actions.ui.frame
 import com.forntoh.mvvmtemplates.actions.ui.textField
-import com.forntoh.mvvmtemplates.recipes.appManifest
-import com.forntoh.mvvmtemplates.recipes.child
+import com.forntoh.mvvmtemplates.recipes.*
+import com.forntoh.mvvmtemplates.recipes.app.appProps
+import com.forntoh.mvvmtemplates.recipes.app.gradleBuildApp
+import com.forntoh.mvvmtemplates.recipes.app.versionProps
 import com.forntoh.mvvmtemplates.recipes.common.gradleBuildCommon
 import com.forntoh.mvvmtemplates.recipes.database.gradleBuildDatabase
-import com.forntoh.mvvmtemplates.recipes.gradleBuildProject
-import com.forntoh.mvvmtemplates.recipes.moduleManifest
 import com.forntoh.mvvmtemplates.recipes.repository.gradleBuildRepo
 import com.forntoh.mvvmtemplates.recipes.webservice.gradleBuildWebService
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -52,8 +52,16 @@ class FixManifestGradleAction : RequireAppAction() {
                             folder.createManifest(packageName)
                             folder.generateGradleScript(gradleBuildWebService("common"))
                         }
-                        "app" -> folder.createManifest("$projectPackage.app", false)
-                        project.name -> folder.generateGradleScript(gradleBuildProject())
+                        "app" -> {
+                            val packageName = "$projectPackage.app"
+                            versionProps.save(folder.asDir(project)!!,"version.properties")
+                            folder.createManifest(packageName, false)
+                            folder.generateGradleScript(gradleBuildApp(packageName, repo.text))
+                        }
+                        project.name -> {
+                            appProps.save(folder.asDir(project)!!,"app.properties")
+                            folder.generateGradleScript(gradleBuildProject())
+                        }
                     }
                 }
                 it.dispose()

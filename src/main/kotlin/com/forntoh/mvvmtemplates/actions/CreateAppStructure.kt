@@ -4,10 +4,9 @@ import com.forntoh.mvvmtemplates.recipes.app.*
 import com.forntoh.mvvmtemplates.recipes.child
 import com.forntoh.mvvmtemplates.recipes.packageName
 import com.forntoh.mvvmtemplates.recipes.save
-import com.intellij.ide.impl.convert.JDomConvertingUtil.findChild
+import com.forntoh.mvvmtemplates.recipes.saveText
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.vfs.VfsUtil
-import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiManager
 
 class CreateAppStructure : RequireAppAction() {
@@ -85,10 +84,5 @@ class CreateAppStructure : RequireAppAction() {
         }
         VfsUtil.createDirectories("${resRoot.path}/values-night")?.saveText("themes.xml", themesNight(project.name))
     }
-
-    private fun VirtualFile.saveText(fileName: String, content: String) = VfsUtil.saveText(
-        findChild(fileName)!!,
-        content
-    )
 
 }
