@@ -25,8 +25,18 @@ fun srcPath(moduleData: ModuleTemplateData) =
 
 fun VirtualFile?.child(path: String): VirtualFile? {
     var file = this
-    path.split("/").forEach { file = file?.findChild(it) }
+    path.split("/", ".").forEach { file = file?.findChild(it) }
     return file
+}
+
+fun VirtualFile?.packageName(): String {
+    var packageName = ""
+    var child = this
+
+    while (run { child = child?.children?.firstOrNull(); child } != null)
+        packageName += "${child?.name}."
+
+    return packageName.substring(0, packageName.length - 1)
 }
 
 fun String.save(destDir: PsiDirectory, fileName: String) {

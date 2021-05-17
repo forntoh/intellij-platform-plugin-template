@@ -19,9 +19,15 @@
 
     <actions>
         <action id="com.forntoh.mvvmtemplates.actions.FixManifestGradleAction"
-                class="com.forntoh.mvvmtemplates.actions.FixManifestGradleAction" text="Fix Manifest and Build Files"
+                class="com.forntoh.mvvmtemplates.actions.FixManifestGradleAction"
+                text="Fix Manifest and Build Files"
                 description="Fix manifest and Build Files">
-            <add-to-group group-id="CodeMenu" anchor="first"/>
+            <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="Generate"/>
+        </action>
+        <action id="com.forntoh.mvvmtemplates.actions.CreateAppStructure"
+                class="com.forntoh.mvvmtemplates.actions.CreateAppStructure" text="Create App Structure"
+                description="Create app structure">
+            <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="com.forntoh.mvvmtemplates.actions.FixManifestGradleAction"/>
         </action>
     </actions>
 </idea-plugin>
