@@ -3,15 +3,15 @@ package com.forntoh.mvvmtemplates.recipes
 fun gradleBuildProject() = """buildscript {
     ext {
         hilt_version = '2.33-beta'
-        room_version = '2.3.0-beta03'
+        room_version = '2.4.0-alpha02'
         kotlin_version = '1.4.31'
-        arch_navigation = '2.3.4'
+        arch_navigation = '2.3.5'
         ok_http_Version = '5.0.0-alpha.2'
         groupie_version = '2.9.0'
         retrofit_version = '2.9.0'
-        lifecycle_version = '2.3.0'
+        lifecycle_version = '2.3.1'
         work_manager_version = '2.5.0'
-        hilt_android_version = '1.0.0-beta01'
+        hilt_android_version = '1.0.0'
         material_dialogs_version = '3.3.0'
     }
     repositories {
