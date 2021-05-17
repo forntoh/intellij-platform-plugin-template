@@ -3,9 +3,12 @@ package com.forntoh.mvvmtemplates.actions
 import com.forntoh.mvvmtemplates.actions.ui.button
 import com.forntoh.mvvmtemplates.actions.ui.frame
 import com.forntoh.mvvmtemplates.actions.ui.textField
+import com.forntoh.mvvmtemplates.recipes.appManifest
 import com.forntoh.mvvmtemplates.recipes.child
 import com.forntoh.mvvmtemplates.recipes.common.gradleBuildCommon
 import com.forntoh.mvvmtemplates.recipes.database.gradleBuildDatabase
+import com.forntoh.mvvmtemplates.recipes.gradleBuildProject
+import com.forntoh.mvvmtemplates.recipes.moduleManifest
 import com.forntoh.mvvmtemplates.recipes.repository.gradleBuildRepo
 import com.forntoh.mvvmtemplates.recipes.webservice.gradleBuildWebService
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -49,7 +52,8 @@ class FixManifestGradleAction : RequireAppAction() {
                             folder.createManifest(packageName)
                             folder.generateGradleScript(gradleBuildWebService("common"))
                         }
-                        else -> continue
+                        "app" -> folder.createManifest("$projectPackage.app", false)
+                        project.name -> folder.generateGradleScript(gradleBuildProject())
                     }
                 }
                 it.dispose()
@@ -64,12 +68,10 @@ class FixManifestGradleAction : RequireAppAction() {
         )
     }
 
-    private fun VirtualFile.createManifest(packageName: String) {
+    private fun VirtualFile.createManifest(packageName: String, isAppModule: Boolean = true) {
         VfsUtil.saveText(
-            child("src/main/AndroidManifest.xml")!!,
-            """<?xml version="1.0" encoding="utf-8"?>
-<manifest package="$packageName" />
-  """
+            child("src/main/AndroidManifest.xml", '/')!!,
+            if (isAppModule) moduleManifest(packageName) else appManifest(packageName, project.name)
         )
     }
 }

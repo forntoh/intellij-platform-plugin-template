@@ -1,29 +1,20 @@
 package com.forntoh.mvvmtemplates.recipes.app
 
 const val colors = """<resources>
-    <color name="teal_400">#34a89c</color>
-    <color name="teal_800">#166b5e</color>
-    <color name="teal_900">#114f42</color>
-
-    <color name="pumpkin_700">#ffa925</color>
-    <color name="pumpkin_900">#ff7d1d</color>
-    <color name="pumpkin_1000">#c65400</color>
-
-    <color name="sky_blue">#64CDDF</color>
-
-    <color name="white_100">#ffffff</color>
-    <color name="white_80">#CCFFFFFF</color>
-
-    <color name="black_800">#121212</color>
-    <color name="black_900">#000000</color>
-
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    
     <color name="red_200">#cf6679</color>
     <color name="red_600">#b00020</color>
-
-    <color name="twilight_blue">#EBFCFF</color>
-    <color name="twilight_blue_light">#F8FFF5</color>
-
-    <color name="ic_launcher_background">@color/teal_800</color>
+    
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="black_800">#121212</color>
 </resources>"""
 
 const val dimens = """<resources>
@@ -115,23 +106,26 @@ fun styles(appName: String) = """<resources>
 fun themes(appName: String) = """<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.$appName" parent="Base.Theme.$appName">
-        <item name="colorPrimary">@color/teal_800</item>
-        <item name="colorPrimaryVariant">@color/teal_900</item>
-        <item name="colorSecondary">@color/pumpkin_900</item>
-        <item name="colorSecondaryVariant">@color/pumpkin_1000</item>
-        <item name="colorTertiary">@color/sky_blue</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
 
-        <item name="android:windowBackground">@drawable/background_app</item>
-        <item name="colorSurface">@color/white_100</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        
         <item name="colorError">@color/red_600</item>
+        <item name="colorOnError">@color/white</item>
 
-        <item name="colorOnPrimary">@color/white_100</item>
-        <item name="colorOnSecondary">@color/black_900</item>
-        <item name="colorOnBackground">@color/black_900</item>
-        <item name="colorOnSurface">@color/black_900</item>
-        <item name="colorOnError">@color/white_100</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
 
-        <item name="colorControlHighlight">@color/tertiary_30</item>
+        <item name="colorControlHighlight">?attr/colorSecondary</item>
     </style>
 
     <style name="Base.Theme.$appName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -199,23 +193,26 @@ fun themes(appName: String) = """<resources xmlns:tools="http://schemas.android.
 fun themesNight(appName: String) = """<resources>
 
     <style name="Theme.$appName" parent="Base.Theme.$appName">
-        <item name="colorPrimary">@color/teal_400</item>
-        <item name="colorPrimaryVariant">@color/teal_800</item>
-        <item name="colorSecondary">@color/pumpkin_700</item>
-        <item name="colorSecondaryVariant">@color/pumpkin_900</item>
-        <item name="colorTertiary">@color/white_80</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
 
-        <item name="android:colorBackground">@color/black_800</item>
-        <item name="colorSurface">@color/black_800</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
+
         <item name="colorError">@color/red_200</item>
+        <item name="colorOnError">@color/black</item>
+        
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
 
-        <item name="colorOnPrimary">@color/black_900</item>
-        <item name="colorOnSecondary">@color/black_900</item>
-        <item name="colorOnBackground">@color/white_100</item>
-        <item name="colorOnSurface">@color/white_100</item>
-        <item name="colorOnError">@color/black_900</item>
-
-        <item name="colorControlHighlight">@color/tertiary_30</item>
+        <item name="colorControlHighlight">?attr/colorSecondary</item>
     </style>
 </resources>"""
 

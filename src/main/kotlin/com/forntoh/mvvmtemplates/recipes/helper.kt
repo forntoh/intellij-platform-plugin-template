@@ -23,9 +23,9 @@ fun mainPath(moduleData: ModuleTemplateData) =
 fun srcPath(moduleData: ModuleTemplateData) =
     "${moduleData.rootDir.path}/src/main/java/${moduleData.packageName.replace('.', '/')}"
 
-fun VirtualFile?.child(path: String): VirtualFile? {
+fun VirtualFile?.child(path: String, vararg delimiters: Char = charArrayOf('/', '.')): VirtualFile? {
     var file = this
-    path.split("/", ".").forEach { file = file?.findChild(it) }
+    path.split(*delimiters).forEach { file = file?.findChild(it) }
     return file
 }
 

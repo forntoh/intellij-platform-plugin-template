@@ -26,19 +26,20 @@ abstract class RequireAppAction : AnAction() {
             targetDirectory = targetDirectory.parent
         }
 
-        if (targetDirectory == null || targetDirectory.name != "app")
+        if (targetDirectory == null || targetDirectory.name != "app") {
             JOptionPane.showMessageDialog(
                 null,
                 "Please select the app directory, then retry",
                 "Incorrect directory",
                 JOptionPane.ERROR_MESSAGE
-            ).also { return }
+            )
+            return
+        }
 
         javaRoot = targetDirectory.child("src/main/java") ?: return
         resRoot = targetDirectory.child("src/main/res") ?: return
 
         projectPackage = javaRoot.packageName()
         projectPackage = with(projectPackage.split(".")) { subList(0, size - 1).joinToString(".") }
-
     }
 }

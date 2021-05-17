@@ -2,6 +2,8 @@ package com.forntoh.mvvmtemplates.setup
 
 import com.android.tools.idea.wizard.template.*
 
+const val commonModuleName = "common"
+
 val commonTemplate
     get() = template {
         revision = 2
@@ -38,23 +40,15 @@ val databaseTemplate
             constraints = listOf(Constraint.NONEMPTY)
         }
 
-        val commonModuleName = stringParameter {
-            name = "Common Module Name"
-            default = "common"
-            help = "The name of the common module"
-            constraints = listOf(Constraint.MODULE, Constraint.NONEMPTY)
-        }
-
         widgets(
             TextFieldWidget(databaseName),
-            TextFieldWidget(commonModuleName),
         )
 
         recipe = { data: TemplateData ->
             databaseModuleSetup(
                 data as ModuleTemplateData,
                 databaseName.value,
-                commonModuleName.value.replace('-', '_'),
+                commonModuleName,
             )
         }
     }
@@ -90,24 +84,16 @@ val webServiceTemplate
             default = true
         }
 
-        val commonModuleName = stringParameter {
-            name = "Common Module Name"
-            default = "common"
-            help = "The name of the common module"
-            constraints = listOf(Constraint.MODULE, Constraint.NONEMPTY)
-        }
-
         widgets(
             TextFieldWidget(domain),
             TextFieldWidget(port),
             CheckBoxWidget(useHttps),
-            TextFieldWidget(commonModuleName),
         )
 
         recipe = { data: TemplateData ->
             webServiceModuleSetup(
                 data as ModuleTemplateData,
-                commonModuleName.value.replace('-', '_'),
+                commonModuleName,
                 useHttps.value,
                 domain.value,
                 port.value
@@ -128,13 +114,6 @@ val repositoryTemplate
         formFactor = FormFactor.Mobile
         screens = mScreens
 
-        val commonModuleName = stringParameter {
-            name = "Common Module Name"
-            default = "common"
-            help = "The name of the common module"
-            constraints = listOf(Constraint.MODULE, Constraint.NONEMPTY)
-        }
-
         val databaseModuleName = stringParameter {
             name = "Database Module Name"
             default = "database"
@@ -150,7 +129,6 @@ val repositoryTemplate
         }
 
         widgets(
-            TextFieldWidget(commonModuleName),
             TextFieldWidget(databaseModuleName),
             TextFieldWidget(webServiceModuleName),
         )
@@ -158,7 +136,7 @@ val repositoryTemplate
         recipe = { data: TemplateData ->
             repositoryModuleSetup(
                 data as ModuleTemplateData,
-                commonModuleName.value.replace('-', '_'),
+                commonModuleName,
                 webServiceModuleName.value.replace('-', '_'),
             )
         }
