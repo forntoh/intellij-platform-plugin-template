@@ -2,7 +2,7 @@ package com.forntoh.mvvmtemplates.recipes.app
 
 fun gradleBuildApp(appPackage: String, repoModuleName: String) = """plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android' version "~kotlin_version"
+    id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'

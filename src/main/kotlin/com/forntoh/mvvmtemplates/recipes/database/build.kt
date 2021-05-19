@@ -4,7 +4,7 @@ fun gradleBuildDatabase(
     commonModuleName: String,
 ) = """plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android' version "+kotlin_version"
+    id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
     id 'dagger.hilt.android.plugin'
 }

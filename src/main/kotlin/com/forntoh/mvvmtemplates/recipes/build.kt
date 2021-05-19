@@ -4,7 +4,7 @@ fun gradleBuildProject() = """buildscript {
     ext {
         hilt_version = '2.33-beta'
         room_version = '2.4.0-alpha02'
-        kotlin_version = '1.4.31'
+        kotlin_version = '1.5.0-release-764'
         arch_navigation = '2.3.5'
         ok_http_Version = '5.0.0-alpha.2'
         groupie_version = '2.9.0'
@@ -19,7 +19,7 @@ fun gradleBuildProject() = """buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "com.google.dagger:hilt-android-gradle-plugin:+hilt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:+arch_navigation"
     }
